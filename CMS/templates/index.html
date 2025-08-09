@@ -23,112 +23,70 @@
       background: linear-gradient(90deg, #0d6efd, #6610f2);
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .navbar-brand {
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+    .navbar-brand { font-weight: 700; letter-spacing: 0.5px; }
 
     /* Card styling */
-    .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.1);
-    }
+    .card { border: none; border-radius: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.05); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.1); }
 
     /* Input focus glow */
-    input:focus, textarea:focus {
-      box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25) !important;
-    }
+    input:focus, textarea:focus { box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25) !important; }
 
     /* Contact list */
     #contactsList .list-group-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: none;
-      border-radius: 0.75rem;
-      margin-bottom: 0.5rem;
-      padding: 1rem;
-      background: #ffffff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.15s ease;
+      display: flex; justify-content: space-between; align-items: center; border: none; border-radius: 0.75rem; margin-bottom: 0.5rem; padding: 1rem; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: transform 0.15s ease;
     }
-    #contactsList .list-group-item:hover {
-      transform: scale(1.01);
-      background: #f8f9fa;
-    }
+    #contactsList .list-group-item:hover { transform: scale(1.01); background: #f8f9fa; }
+
+    /* Avatar */
+    .avatar { width:40px; height:40px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; color:#fff; }
 
     /* Buttons */
-    .btn-gradient {
-      background: linear-gradient(90deg, #0d6efd, #6610f2);
-      color: #fff;
-      border: none;
-    }
-    .btn-gradient:hover {
-      background: linear-gradient(90deg, #0b5ed7, #520dc2);
-      color: #fff;
-    }
+    .btn-gradient { background: linear-gradient(90deg, #0d6efd, #6610f2); color:#fff; border:none; }
+    .btn-gradient:hover { background: linear-gradient(90deg, #0b5ed7, #520dc2); color:#fff; }
 
     /* Stats card */
-    .stats-value {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #0d6efd;
-    }
+    .stats-value { font-size:2rem; font-weight:bold; color:#0d6efd; }
 
     /* Search card icon */
-    .search-icon {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #adb5bd;
-    }
-    .search-wrapper {
-      position: relative;
-    }
-    .search-wrapper input {
-      padding-left: 2.5rem;
-    }
+    .search-icon { position:absolute; left:15px; top:50%; transform:translateY(-50%); color:#adb5bd; }
+    .search-wrapper { position:relative; }
+    .search-wrapper input { padding-left:2.5rem; }
 
     /* Offcanvas styling */
-    .offcanvas {
-      border-top-left-radius: 1rem;
-      border-bottom-left-radius: 1rem;
-    }
+    .offcanvas { border-top-left-radius:1rem; border-bottom-left-radius:1rem; }
 
     /* Modal */
-    .modal-content {
-      border-radius: 1rem;
-    }
+    .modal-content { border-radius:1rem; }
 
     /* Subtle fade animations */
-    .fade-in {
-      animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .fade-in { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform: translateY(0); } }
+
+    /* Small helpers */
+    .muted { color:#6c757d; }
+    .tag-pill { padding:0.2rem 0.5rem; border-radius:999px; background:#f1f3f5; margin-right:0.25rem; font-size:0.8rem; }
   </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><i class="bi bi-person-lines-fill me-2"></i>Contact Manager</a>
-    <div class="d-flex">
-      <button id="downloadCsvBtn" class="btn btn-outline-light me-2"><i class="bi bi-download me-1"></i>CSV</button>
-      <button class="btn btn-light" data-bs-toggle="offcanvas" data-bs-target="#addPanel"><i class="bi bi-plus-circle me-1"></i>Add</button>
+    <div class="d-flex align-items-center">
+      <div class="me-2">
+        <div class="btn-group">
+          <button id="downloadCsvBtn" class="btn btn-outline-light"><i class="bi bi-download me-1"></i>CSV</button>
+          <button id="exportVcfBtn" class="btn btn-outline-light"><i class="bi bi-file-person me-1"></i>vCard</button>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-light" data-bs-toggle="offcanvas" data-bs-target="#addPanel"><i class="bi bi-plus-circle me-1"></i>Add</button>
+      </div>
     </div>
   </div>
 </nav>
 
-<div class="container fade-in">
+<div class="container fade-in mt-3">
   <div class="row g-4">
     <!-- Left Column -->
     <div class="col-lg-4">
@@ -137,25 +95,60 @@
         <h5 class="card-title mb-3"><i class="bi bi-search me-1"></i>Search</h5>
         <div class="search-wrapper">
           <i class="bi bi-search search-icon"></i>
-          <input id="searchInput" type="search" class="form-control" placeholder="Search by name, phone, email..." />
+          <input id="searchInput" type="search" class="form-control" placeholder="Search by name, phone, email or tag..." />
         </div>
-        <div class="small-muted mt-2">Live results appear as you type.</div>
+        <div class="small-muted mt-2">Live results appear as you type. Press <kbd>N</kbd> to add a new contact.</div>
+
+        <hr />
+
+        <!-- Filters & Sort -->
+        <div class="d-flex gap-2 flex-wrap mt-2">
+          <select id="sortSelect" class="form-select form-select-sm" aria-label="Sort">
+            <option value="name_asc">Name ↑</option>
+            <option value="name_desc">Name ↓</option>
+            <option value="recent">Recently added</option>
+          </select>
+
+          <button id="clearFilters" class="btn btn-sm btn-outline-secondary">Clear</button>
+        </div>
+
+        <!-- Tag quick filters -->
+        <div class="mt-3" id="tagFilters"></div>
       </div>
 
       <!-- Stats -->
       <div class="card p-3 mt-3 text-center">
-        <h6 class="mb-2 text-muted"><i class="bi bi-bar-chart-fill me-1"></i>Statistics</h6>
+        <h6 class="mb-2 muted"><i class="bi bi-bar-chart-fill me-1"></i>Statistics</h6>
         <div class="stats-value" id="totalCount">0</div>
-        <div class="text-muted">Total Contacts</div>
+        <div class="muted">Total Contacts</div>
+        <div class="row mt-3 text-start">
+          <div class="col-6"><small class="muted">Tags:</small></div>
+          <div class="col-6 text-end"><small id="uniqueTags" class="muted">0</small></div>
+        </div>
       </div>
     </div>
 
     <!-- Right Column -->
     <div class="col-lg-8">
       <div class="card p-3">
-        <h5 class="card-title mb-3"><i class="bi bi-people-fill me-1"></i>All Contacts</h5>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="card-title mb-0"><i class="bi bi-people-fill me-1"></i>All Contacts</h5>
+          <div>
+            <button id="importCsvBtn" class="btn btn-sm btn-outline-secondary me-2"><i class="bi bi-upload me-1"></i>Import CSV</button>
+            <div class="btn-group">
+              <button id="sampleDataBtn" class="btn btn-sm btn-outline-primary">Seed</button>
+              <button id="clearAllBtn" class="btn btn-sm btn-outline-danger">Clear</button>
+            </div>
+          </div>
+        </div>
+
         <ul id="contactsList" class="list-group list-group-flush"></ul>
-        <div id="emptyHint" class="text-muted mt-3 text-center py-3 border rounded">No contacts found. Use "Add Contact" to create one.</div>
+        <div id="emptyHint" class="text-muted mt-3 text-center py-3 border rounded">No contacts found. Use "Add Contact" to create one, or click <strong>Seed</strong> to add demo contacts.</div>
+
+        <!-- Pagination -->
+        <nav class="mt-3" aria-label="Contacts pagination">
+          <ul id="pagination" class="pagination justify-content-center"></ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -189,8 +182,14 @@
         <label class="form-label">Tags (comma separated)</label>
         <input id="add-tags" class="form-control" />
       </div>
-      <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-gradient"><i class="bi bi-check-lg me-1"></i>Add</button>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="form-check">
+          <input id="favoriteCheck" class="form-check-input" type="checkbox">
+          <label class="form-check-label" for="favoriteCheck">Favorite</label>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-gradient"><i class="bi bi-check-lg me-1"></i>Add</button>
+        </div>
       </div>
     </form>
   </div>
@@ -220,151 +219,405 @@
   </div>
 </div>
 
+<!-- Hidden file input for CSV import -->
+<input id="csvFileInput" type="file" accept=".csv,text/csv" style="display:none" />
+
+<!-- Toast area -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+  <div id="toastContainer"></div>
+</div>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  const API_BASE = "/api/contacts";
+  // ---------- Configuration & helpers ----------
+  const STORAGE_KEY = 'cms_contacts_v1';
+  const PAGE_SIZE = 8;
+
   const searchInput = document.getElementById("searchInput");
   const contactsList = document.getElementById("contactsList");
   const totalCount = document.getElementById("totalCount");
   const emptyHint = document.getElementById("emptyHint");
+  const tagFilters = document.getElementById('tagFilters');
+  const uniqueTagsEl = document.getElementById('uniqueTags');
+  const paginationEl = document.getElementById('pagination');
+  const sortSelect = document.getElementById('sortSelect');
 
-  // bootstrap components
+  // Bootstrap components
   const editModalEl = document.getElementById('editModal');
   const editModal = new bootstrap.Modal(editModalEl);
+  const addOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('addPanel')) || new bootstrap.Offcanvas(document.getElementById('addPanel'));
 
-  // load all contacts
-  async function loadAll() {
-    const res = await fetch(API_BASE);
-    const data = await res.json();
-    renderList(data);
+  // App state
+  let contacts = [];
+  let filtered = [];
+  let currentPage = 1;
+  let activeTagFilter = null;
+
+  // ---------- Utilities ----------
+  function uid() { return 'c_' + Math.random().toString(36).slice(2,9); }
+
+  function nowISO() { return new Date().toISOString(); }
+
+  function showToast(message, opts = {}) {
+    const id = 't_' + Date.now();
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `
+      <div id="${id}" class="toast align-items-center text-bg-light border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">${escapeHtml(message)}</div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+      </div>`;
+    document.getElementById('toastContainer').appendChild(wrapper);
+    setTimeout(() => { try { wrapper.remove(); } catch(e){} }, (opts.duration || 3500));
   }
 
-  // search (live)
-  let searchTimer = null;
-  searchInput.addEventListener("input", () => {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(async () => {
-      const q = searchInput.value.trim();
-      if (!q) { loadAll(); return; }
-      const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}`);
-      const data = await res.json();
-      renderList(data);
-    }, 250);
-  });
+  function escapeHtml(s) { if (!s) return ""; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
 
+  function avatarFor(name) {
+    const initials = (name || 'U').split(' ').map(p=>p[0]).slice(0,2).join('').toUpperCase();
+    // deterministic color from name
+    let hash = 0; for (let i=0;i<name.length;i++) hash = name.charCodeAt(i) + ((hash<<5)-hash);
+    const hue = Math.abs(hash) % 360;
+    return { initials, bg: `linear-gradient(135deg,hsl(${hue} 70% 45%), hsl(${(hue+40)%360} 70% 35%))` };
+  }
+
+  // ---------- Persistence (localStorage fallback) ----------
+  function loadFromStorage() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return [];
+      return JSON.parse(raw);
+    } catch (e) { console.warn('Failed to parse storage', e); return []; }
+  }
+
+  function saveToStorage() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+  }
+
+  // ---------- Seed/demo data ----------
+  const DEMO = [
+    { _id: uid(), name: 'Asha Patel', phone: '9876543210', email: 'asha@example.com', address: 'Surat, Gujarat', tags:['friend','work'], createdAt: nowISO() },
+    { _id: uid(), name: 'Rajat Kevat', phone: '9012345678', email: 'rajat@example.com', address: 'Uttran, Surat', tags:['family','client'], createdAt: nowISO() },
+    { _id: uid(), name: 'Priya Sharma', phone: '9123456780', email: 'priya@example.com', address: 'Ahmedabad', tags:['gym'], createdAt: nowISO() },
+    { _id: uid(), name: 'Suresh Kumar', phone: '9988776655', email: '', address: '', tags:['vendor'], createdAt: nowISO() }
+  ];
+
+  // ---------- Rendering ----------
   function renderList(items) {
-    contactsList.innerHTML = "";
+    contactsList.innerHTML = '';
     totalCount.textContent = items.length;
-    if (!items.length) {
-      emptyHint.style.display = "block";
-      return;
-    } else {
-      emptyHint.style.display = "none";
-    }
+    if (!items.length) { emptyHint.style.display = 'block'; paginationEl.innerHTML = ''; return; } else { emptyHint.style.display = 'none'; }
 
-    items.forEach(c => {
-      const li = document.createElement("li");
-      li.className = "list-group-item";
+    // pagination slice
+    const start = (currentPage-1)*PAGE_SIZE;
+    const pageItems = items.slice(start, start + PAGE_SIZE);
+
+    pageItems.forEach(c => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item';
+
+      const av = avatarFor(c.name || 'U');
+      const tagsHtml = (c.tags || []).map(t=>`<span class="tag-pill">${escapeHtml(t)}</span>`).join(' ');
+
       li.innerHTML = `
-        <div>
-          <strong>${escapeHtml(c.name)}</strong>
-          <div class="small-muted">${escapeHtml(c.phone)} ${c.email ? "- " + escapeHtml(c.email) : ""}</div>
-          ${c.address ? `<div class="small-muted">${escapeHtml(c.address)}</div>` : ""}
-          ${c.tags && c.tags.length ? `<div class="small-muted">Tags: ${escapeHtml(c.tags.join(", "))}</div>` : ""}
+        <div style="display:flex;gap:12px;align-items:center;max-width:65%">
+          <div style="width:48px;height:48px;border-radius:50%;flex:0 0 48px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;background:${av.bg}">${escapeHtml(av.initials)}</div>
+          <div>
+            <strong>${escapeHtml(c.name)}</strong>
+            <div class="muted small">${escapeHtml(c.phone||'—')} ${c.email? '- ' + escapeHtml(c.email): ''}</div>
+            ${c.address? `<div class="muted small">${escapeHtml(c.address)}</div>` : ''}
+            <div class="mt-1">${tagsHtml}</div>
+          </div>
         </div>
-        <div>
-          <button class="btn btn-sm btn-outline-secondary me-2" onclick="openEdit('${c._id}')">Edit</button>
-          <button class="btn btn-sm btn-outline-danger" onclick="removeContact('${c._id}')">Delete</button>
+        <div style="text-align:right;min-width:220px">
+          <div class="mb-2 small muted">Added: ${new Date(c.createdAt).toLocaleString()}</div>
+          <div>
+            <button class="btn btn-sm btn-outline-secondary me-2" onclick="openEdit('${c._id}')"><i class="bi bi-pencil"></i> Edit</button>
+            <button class="btn btn-sm btn-outline-danger me-2" onclick="removeContact('${c._id}')"><i class="bi bi-trash"></i> Delete</button>
+            <button class="btn btn-sm btn-outline-primary" onclick="copyContact('${c._id}')"><i class="bi bi-clipboard"></i> Copy</button>
+          </div>
         </div>
       `;
+
       contactsList.appendChild(li);
     });
+
+    renderPagination(items.length);
   }
 
-  // escape simple HTML
-  function escapeHtml(s) {
-    if (!s) return "";
-    return s.replaceAll("&", "&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+  function renderPagination(totalItems) {
+    const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
+    paginationEl.innerHTML = '';
+    for (let i=1;i<=totalPages;i++) {
+      const li = document.createElement('li');
+      li.className = `page-item ${i===currentPage?'active':''}`;
+      li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+      paginationEl.appendChild(li);
+    }
   }
 
-  // add contact
-  document.getElementById("addForm").addEventListener("submit", async (e) => {
+  // ---------- Filtering / Sorting ----------
+  function applyFilters() {
+    const q = searchInput.value.trim().toLowerCase();
+    const sort = sortSelect.value;
+
+    filtered = contacts.filter(c => {
+      if (activeTagFilter && !(c.tags||[]).includes(activeTagFilter)) return false;
+      if (!q) return true;
+      const hay = [c.name, c.phone, c.email, (c.tags||[]).join(' ')].join(' ').toLowerCase();
+      return hay.includes(q);
+    });
+
+    // sort
+    if (sort === 'name_asc') filtered.sort((a,b)=> (a.name||'').localeCompare(b.name||''));
+    else if (sort === 'name_desc') filtered.sort((a,b)=> (b.name||'').localeCompare(a.name||''));
+    else if (sort === 'recent') filtered.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+
+    currentPage = 1;
+    renderList(filtered);
+  }
+
+  // ---------- CRUD ----------
+  document.getElementById('addForm').addEventListener('submit', (e)=>{
     e.preventDefault();
-    const name = document.getElementById("add-name").value.trim();
-    if (!name) return alert("Name required");
-    const contact = {
+    const name = document.getElementById('add-name').value.trim();
+    if (!name) return showToast('Name is required');
+    const c = {
+      _id: uid(),
       name,
-      phone: document.getElementById("add-phone").value.trim(),
-      email: document.getElementById("add-email").value.trim(),
-      address: document.getElementById("add-address").value.trim(),
-      tags: document.getElementById("add-tags").value.split(",").map(t=>t.trim()).filter(Boolean)
+      phone: document.getElementById('add-phone').value.trim(),
+      email: document.getElementById('add-email').value.trim(),
+      address: document.getElementById('add-address').value.trim(),
+      tags: document.getElementById('add-tags').value.split(',').map(t=>t.trim()).filter(Boolean),
+      createdAt: nowISO()
     };
-    await fetch(API_BASE, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(contact) });
-    // close offcanvas
-    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('addPanel'));
-    offcanvas.hide();
-    e.target.reset();
-    loadAll();
+    contacts.unshift(c);
+    saveToStorage();
+    showToast('Contact added');
+    document.getElementById('addForm').reset();
+    addOffcanvas.hide();
+    refreshApp();
   });
 
-  // open edit modal and populate
-  async function openEdit(id) {
-    const res = await fetch(`${API_BASE}/${id}`);
-    if (!res.ok) return alert("Failed to fetch contact");
-    const c = await res.json();
-    document.getElementById("edit-id").value = c._id;
-    document.getElementById("edit-name").value = c.name || "";
-    document.getElementById("edit-phone").value = c.phone || "";
-    document.getElementById("edit-email").value = c.email || "";
-    document.getElementById("edit-address").value = c.address || "";
-    document.getElementById("edit-tags").value = (c.tags || []).join(", ");
+  window.openEdit = async function(id) {
+    const c = contacts.find(x=>x._id===id);
+    if (!c) return showToast('Contact not found');
+    document.getElementById('edit-id').value = c._id;
+    document.getElementById('edit-name').value = c.name || '';
+    document.getElementById('edit-phone').value = c.phone || '';
+    document.getElementById('edit-email').value = c.email || '';
+    document.getElementById('edit-address').value = c.address || '';
+    document.getElementById('edit-tags').value = (c.tags||[]).join(', ');
     editModal.show();
   }
 
-  // submit edit
-  document.getElementById("editForm").addEventListener("submit", async (e) => {
+  document.getElementById('editForm').addEventListener('submit', (e)=>{
     e.preventDefault();
-    const id = document.getElementById("edit-id").value;
-    const payload = {
-      name: document.getElementById("edit-name").value.trim(),
-      phone: document.getElementById("edit-phone").value.trim(),
-      email: document.getElementById("edit-email").value.trim(),
-      address: document.getElementById("edit-address").value.trim(),
-      tags: document.getElementById("edit-tags").value.split(",").map(t=>t.trim()).filter(Boolean)
-    };
-    const res = await fetch(`${API_BASE}/${id}`, {
-      method: "PUT",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) {
-      const err = await res.json(); alert(err?.error || "Update failed");
-      return;
-    }
+    const id = document.getElementById('edit-id').value;
+    const idx = contacts.findIndex(x=>x._id===id); if (idx<0) return showToast('Contact not found');
+    contacts[idx].name = document.getElementById('edit-name').value.trim();
+    contacts[idx].phone = document.getElementById('edit-phone').value.trim();
+    contacts[idx].email = document.getElementById('edit-email').value.trim();
+    contacts[idx].address = document.getElementById('edit-address').value.trim();
+    contacts[idx].tags = document.getElementById('edit-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+    saveToStorage();
+    showToast('Contact updated');
     editModal.hide();
-    loadAll();
+    refreshApp();
   });
 
-  // delete contact
-  async function removeContact(id) {
-    if (!confirm("Delete this contact?")) return;
-    const res = await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
-    if (!res.ok) {
-      const bad = await res.json(); alert(bad?.error || "Delete failed");
-      return;
-    }
-    loadAll();
+  window.removeContact = async function(id) {
+    if (!confirm('Delete this contact?')) return;
+    contacts = contacts.filter(x=>x._id!==id);
+    saveToStorage();
+    showToast('Contact deleted');
+    refreshApp();
   }
 
-  // download csv (server provides file)
-  document.getElementById("downloadCsvBtn").addEventListener("click", () => {
-    window.location = `${API_BASE}/download_csv`;
+  window.copyContact = function(id) {
+    const c = contacts.find(x=>x._id===id); if(!c) return showToast('Contact not found');
+    const txt = `${c.name}\n${c.phone || ''}\n${c.email || ''}\n${c.address || ''}`;
+    navigator.clipboard?.writeText(txt).then(()=> showToast('Contact copied to clipboard')).catch(()=> showToast('Clipboard not available'));
+  }
+
+  // ---------- CSV Export / Import ----------
+  function contactsToCSV(list) {
+    const cols = ['name','phone','email','address','tags','createdAt'];
+    const rows = [cols.join(',')];
+    list.forEach(c => {
+      const r = [c.name, c.phone, c.email, c.address, (c.tags||[]).join('|'), c.createdAt].map(v => '"' + String(v||'').replaceAll('"','""') + '"');
+      rows.push(r.join(','));
+    });
+    return rows.join('\n');
+  }
+
+  document.getElementById('downloadCsvBtn').addEventListener('click', ()=>{
+    // try server first, else fallback to client generated CSV
+    const serverUrl = '/api/contacts/download_csv';
+    // attempt server; if it fails, fallback
+    fetch(serverUrl).then(r=>{ if (r.ok) { window.location = serverUrl; } else throw 'no'; }).catch(()=>{
+      const csv = contactsToCSV(filtered.length?filtered:contacts);
+      const blob = new Blob([csv], {type:'text/csv'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'contacts.csv'; a.click(); URL.revokeObjectURL(a.href);
+      showToast('CSV downloaded (client)');
+    });
   });
 
-  // initial load
-  loadAll();
+  document.getElementById('importCsvBtn').addEventListener('click', ()=> document.getElementById('csvFileInput').click());
+
+  document.getElementById('csvFileInput').addEventListener('change', (e)=>{
+    const f = e.target.files[0]; if (!f) return; const reader = new FileReader();
+    reader.onload = (ev)=>{
+      const text = ev.target.result;
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      // simple CSV parser (expects header row name,phone,email,address,tags)
+      const headers = lines.shift().split(',').map(h=>h.trim().toLowerCase());
+      lines.forEach(line=>{
+        const parts = line.match(/(".*?"|[^,]+)(?=,|$)/g)?.map(s=>s.replace(/^"|"$/g,'').replaceAll('""','"')) || [];
+        const obj = {};
+        headers.forEach((h,idx)=> obj[h] = parts[idx] || '');
+        const c = { _id: uid(), name: obj.name||obj.fullname||'Imported', phone: obj.phone||'', email: obj.email||'', address: obj.address||'', tags: (obj.tags||'').split('|').map(t=>t.trim()).filter(Boolean), createdAt: nowISO() };
+        contacts.push(c);
+      });
+      saveToStorage();
+      showToast('CSV imported');
+      refreshApp();
+    };
+    reader.readAsText(f);
+    e.target.value = null;
+  });
+
+  // vCard export for visible contacts
+  document.getElementById('exportVcfBtn').addEventListener('click', ()=>{
+    const list = filtered.length ? filtered : contacts;
+    const vcards = list.map(c=>{
+      return `BEGIN:VCARD\nVERSION:3.0\nFN:${c.name || ''}\nTEL;TYPE=CELL:${c.phone || ''}\nEMAIL:${c.email || ''}\nADR:;;${c.address || ''};;;;\nEND:VCARD`;
+    }).join('\n');
+    const blob = new Blob([vcards], {type:'text/vcard'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'contacts.vcf'; a.click(); URL.revokeObjectURL(a.href);
+    showToast('vCard downloaded');
+  });
+
+  // ---------- Misc controls ----------
+  document.getElementById('sampleDataBtn').addEventListener('click', ()=>{
+    contacts = DEMO.concat(contacts);
+    saveToStorage();
+    showToast('Demo contacts added');
+    refreshApp();
+  });
+
+  document.getElementById('clearAllBtn').addEventListener('click', ()=>{
+    if (!confirm('Clear all saved contacts? This cannot be undone.')) return;
+    contacts = [];
+    saveToStorage();
+    showToast('All contacts cleared');
+    refreshApp();
+  });
+
+  document.getElementById('clearFilters').addEventListener('click', ()=>{
+    searchInput.value = '';
+    activeTagFilter = null;
+    sortSelect.value = 'name_asc';
+    refreshApp();
+  });
+
+  // tag filters rendering
+  function renderTagFilters(){
+    const allTags = Array.from(new Set(contacts.flatMap(c=>c.tags||[]))).sort();
+    tagFilters.innerHTML = '';
+    if (!allTags.length) return;
+    allTags.forEach(t=>{
+      const btn = document.createElement('button');
+      btn.className = `btn btn-sm ${t===activeTagFilter?'btn-gradient':'btn-outline-secondary'} me-1 mb-1`;
+      btn.textContent = t;
+      btn.onclick = ()=>{ activeTagFilter = (activeTagFilter===t?null:t); refreshApp(); };
+      tagFilters.appendChild(btn);
+    });
+    uniqueTagsEl.textContent = allTags.length;
+  }
+
+  // pagination click
+  paginationEl.addEventListener('click', (e)=>{
+    e.preventDefault(); const a = e.target.closest('a'); if (!a) return; const p = Number(a.dataset.page); if (!p) return; currentPage = p; renderList(filtered);
+  });
+
+  // keyboard shortcuts
+  window.addEventListener('keydown', (e)=>{
+    if (e.key === 'n' || e.key === 'N') {
+      // open add
+      const off = bootstrap.Offcanvas.getInstance(document.getElementById('addPanel')) || new bootstrap.Offcanvas(document.getElementById('addPanel'));
+      off.show(); document.getElementById('add-name').focus();
+    }
+  });
+
+  // search debounce
+  let searchTimer = null;
+  searchInput.addEventListener('input', ()=>{
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(()=> applyFilters(), 200);
+  });
+
+  sortSelect.addEventListener('change', applyFilters);
+
+  // ---------- Refresh & startup ----------
+  function refreshApp() {
+    // ensure contacts have createdAt
+    contacts.forEach(c=>{ if (!c.createdAt) c.createdAt = nowISO(); });
+    saveToStorage();
+    renderTagFilters();
+    applyFilters();
+  }
+
+  function init() {
+    // try API load first, else localStorage
+    fetch('/api/contacts').then(r=> r.ok? r.json() : Promise.reject('noapi')).then(data=>{
+      // if server returned an array, use it
+      if (Array.isArray(data) && data.length) {
+        contacts = data.map(d=> ({ _id: d._id || uid(), name:d.name, phone:d.phone, email:d.email, address:d.address, tags:d.tags || [], createdAt: d.createdAt || nowISO() }));
+        saveToStorage();
+        refreshApp();
+      } else throw 'noapi';
+    }).catch(()=>{
+      // fallback to local storage
+      contacts = loadFromStorage();
+      refreshApp();
+    });
+  }
+
+  // CSV drag-and-drop on whole page (optional)
+  window.addEventListener('dragover', (e)=> e.preventDefault());
+  window.addEventListener('drop', (e)=>{
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+      const f = e.dataTransfer.files[0];
+      if (f.name.endsWith('.csv')) {
+        // pipe file to import handler
+        const input = document.getElementById('csvFileInput');
+        const dataTransfer = new DataTransfer(); dataTransfer.items.add(f); input.files = dataTransfer.files;
+        input.dispatchEvent(new Event('change'));
+      }
+    }
+    e.preventDefault();
+  });
+
+  // expose refresh in case remote changes
+  window.refreshContacts = refreshApp;
+
+  // init app
+  init();
+
+  // Expose some functions to the global scope for buttons inside list items
+  window.removeContact = window.removeContact;
+  window.openEdit = window.openEdit;
+  window.copyContact = window.copyContact;
+
+  // developer: optionally register a service worker for offline
+  // if ('serviceWorker' in navigator) {
+  //   navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  // }
 </script>
+
 </body>
 </html>
