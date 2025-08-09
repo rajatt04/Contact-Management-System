@@ -1,12 +1,5 @@
 # 📇 Contact Management System (Frontend)
 
-## 🚀 Getting Started
-
-### 1️⃣ Clone this repo
-```bash
-git clone https://github.com/yourusername/contact-manager.git
-cd contact-manager
-
 ![License](https://img.shields.io/github/license/yourusername/contact-manager?color=blue)
 ![Stars](https://img.shields.io/github/stars/yourusername/contact-manager?style=social)
 ![Last Commit](https://img.shields.io/github/last-commit/yourusername/contact-manager?color=purple)
@@ -35,16 +28,6 @@ This UI is designed to make your contacts feel like they live inside a **SaaS-le
 
 ---
 
-## 📸 Screenshots
-
-> ✨ *"Just a contact website… but wow."*
-
-| Home View | Add Contact | Edit Contact |
-|-----------|-------------|--------------|
-| ![Home](docs/screens/home.png) | ![Add Contact](docs/screens/add.png) | ![Edit Contact](docs/screens/edit.png) |
-
----
-
 ## 🛠️ Tech Stack
 
 - **HTML5**
@@ -59,3 +42,10 @@ This UI is designed to make your contacts feel like they live inside a **SaaS-le
 └── README.md # This file
 
 ---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone this repo
+```bash
+git clone https://github.com/yourusername/contact-manager.git
+cd contact-manager
