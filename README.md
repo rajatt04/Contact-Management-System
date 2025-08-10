@@ -37,9 +37,9 @@ This UI is designed to make your contacts feel like they live inside a **SaaS-le
 
 ---
 
-## 📂 Project Structure
-├── index.html # Main HTML (UI + frontend logic)
-└── README.md # This file
+## 📂 Project Structure <br>
+├── index.html # Main HTML (UI + frontend logic) <br>
+└── README.md # This file <br>
 
 ---
 
